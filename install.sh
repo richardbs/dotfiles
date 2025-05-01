@@ -1,23 +1,67 @@
 #!/bin/bash
 echo "🔗 Creating symlinks for your dotfiles..."
 
-# Symlink configs
+# ─── Symlink configs ─────────────────────────────────────────────────────
 mkdir -p ~/.config
-ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
+ln -sf ~/dotfiles/starship/starship.toml ~/.config/starship.toml
 mkdir -p ~/.config/kitty
 ln -sf ~/dotfiles/kitty/kitty.conf ~/.config/kitty/kitty.conf
 ln -sf ~/dotfiles/bashrc ~/.bashrc
 
 echo "✅ Symlinks created."
 
-# Setup cronjob for daily sync
-CRON_EXISTS=$(crontab -l 2>/dev/null | grep -F "sync_dotfiles.sh" || true)
-if [ -z "$CRON_EXISTS" ]; then
-    (crontab -l 2>/dev/null; echo "@daily bash ~/dotfiles/sync_dotfiles.sh >> ~/dotfiles/sync.log 2>&1") | crontab -
-    echo "🛠️  Daily cronjob for syncing dotfiles installed!"
-else
-    echo "🛠️  Cronjob for syncing already exists. Skipping."
+# ─── Add snapshot + terminal source lines to ~/.bashrc if missing ────────
+if ! grep -q '.bashrc-extras' ~/.bashrc; then
+    echo "➕ Sourcing .bashrc-extras in ~/.bashrc..."
+    echo 'source ~/dotfiles/terminal/.bashrc-extras' >> ~/.bashrc
 fi
 
-echo "✨ Installation complete!"
+if ! grep -q '.bashrc-snaps' ~/.bashrc; then
+    echo "➕ Sourcing .bashrc-snaps in ~/.bashrc..."
+    echo 'source ~/dotfiles/terminal/.bashrc-snaps' >> ~/.bashrc
+fi
+
+# ─── Install Snapper config if present ────────────────────────────────────
+if [ -f ./snapshots/snapper-root.conf ]; then
+    echo "📸 Copying Snapper config to /etc..."
+    sudo cp ./snapshots/snapper-root.conf /etc/snapper/configs/root
+fi
+
+# ─── Set up systemd user timer for dotfile auto-sync ─────────────────────
+echo "🕒 Installing systemd timer for dotfile auto-sync (twice daily)..."
+mkdir -p ~/.config/systemd/user
+
+cat <<EOF > ~/.config/systemd/user/dotfiles-sync.service
+[Unit]
+Description=Auto-sync dotfiles to GitHub
+
+[Service]
+Type=oneshot
+ExecStart=%h/dotfiles/sync_dotfiles.sh
+EOF
+
+cat <<EOF > ~/.config/systemd/user/dotfiles-sync.timer
+[Unit]
+Description=Run dotfiles auto-sync twice daily
+
+[Timer]
+OnCalendar=*-*-* 00,12:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+EOF
+
+systemctl --user daemon-reexec
+systemctl --user daemon-reload
+systemctl --user enable --now dotfiles-sync.timer
+
+echo "✅ Systemd timer installed and running."
+echo -e "\n🧪 Verifying installation with dotfiles_doctor..."
+bash ~/dotfiles/dotfiles_doctor.sh
+
+# ─── Final message ───────────────────────────────────────────────────────
+echo "✨ Dotfiles installation complete!"
+echo "📅 Sync runs at 00:00 and 12:00 daily via systemd."
+echo "💡 Run 'systemctl --user list-timers' to verify."
 echo "➡️  Reminder: Restart terminal or 'source ~/.bashrc' to apply changes."

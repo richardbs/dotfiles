@@ -1,0 +1,48 @@
+# === SNAPSHOT ALIASES & FUNCTIONS ===
+
+snapshot_dashboard() {
+    echo -e "\n🧮 Snapshot counts by type:\n"
+    sudo snapper -c root list --columns type | tail -n +2 | sort | uniq -c
+
+    echo -e "\n📦 Disk usage & age per snapshot (sorted oldest → newest):\n"
+    find /.snapshots/*/snapshot -maxdepth 0 -type d -printf '%T@ %p\n' 2>/dev/null | sort -n | while read -r line; do
+        timestamp=$(echo "$line" | awk '{print $1}')
+        path=$(echo "$line" | awk '{print $2}')
+        usage=$(sudo btrfs subvolume show "$path" | grep "Usage referenced" | sed -E 's/Usage referenced:[[:space:]]*([0-9.]+)([A-Za-z]+)/\1 \2/')
+
+        now=$(date +%s)
+        age_sec=$(echo "$now - $timestamp" | bc)
+
+        if (( $(echo "$age_sec < 86400" | bc -l) )); then
+            age_hours=$(echo "$age_sec / 3600" | bc)
+            age_str="$age_hours hours"
+        elif (( $(echo "$age_sec < 2678400" | bc -l) )); then
+            age_days=$(echo "$age_sec / 86400" | bc)
+            age_str="$age_days days"
+        elif (( $(echo "$age_sec < 31536000" | bc -l) )); then
+            age_months=$(echo "$age_sec / 2592000" | bc)
+            age_str="$age_months months"
+        else
+            age_years=$(echo "$age_sec / 31536000" | bc)
+            age_str="$age_years years"
+        fi
+
+        echo "$path - $usage - Age: $age_str"
+    done
+
+    echo -e "\n📊 Total snapshot space usage:\n"
+    sudo btrfs subvolume list / | awk '{print $NF}' | grep -E '^\.snapshots/[0-9]+/snapshot$' | while read -r subvol; do
+        sudo btrfs subvolume show "/$subvol" | grep "Usage referenced" | sed -E 's/Usage referenced:[[:space:]]*([0-9.]+)([A-Za-z]+)/\1 \2/'
+    done | awk '
+    {
+        val = $1
+        unit = $2
+        if (unit == "GiB") size_mb = val * 1024
+        else if (unit == "KiB") size_mb = val / 1024
+        else size_mb = val
+        sum += size_mb
+    }
+    END {
+        printf "Total used: %.2f GiB (%.2f MiB)\n", sum / 1024, sum
+    }'
+}

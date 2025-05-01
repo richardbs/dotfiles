@@ -1,0 +1,31 @@
+# --- Enhanced Terminal Aliases & Utilities ---
+
+# Use bat instead of cat (colored output)
+if command -v batcat &>/dev/null; then
+  alias cat='batcat --style=plain'
+elif command -v bat &>/dev/null; then
+  alias cat='bat --style=plain'
+fi
+
+# Use lsd instead of ls (icons, colors, clean output)
+if command -v lsd &>/dev/null; then
+  alias ls='lsd'
+  alias ll='lsd -l'
+  alias la='lsd -la'
+fi
+
+# Fuzzy finder (fzf) keybindings and tab completion
+if [[ -n "$DISPLAY" ]] && command -v fzf &>/dev/null; then
+  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+fi
+
+# Enable bash completion if available
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+  source /usr/share/bash-completion/bash_completion
+fi
+
+# Syntax highlighting for paged output
+if command -v highlight &>/dev/null; then
+  export LESSOPEN="| highlight %s --out-format=xterm256 --force"
+  export LESS=' -R '
+fi
