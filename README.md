@@ -15,6 +15,14 @@
 - 🔄 Install script for symlinks and daily auto-sync
 - 🔁 Sync script for pushing dotfiles to GitHub
 
+## 📦 Update Management
+
+This repository includes scripts to manage system updates with snapshot support:
+
+- `yay-update.sh`: Automates `yay -Syu` with a pre-update Snapper snapshot.
+- `rollback-helper.sh`: Displays the latest snapshot info to assist with potential rollbacks.
+- Logs are stored in `~/.local/state/yay-update-log.txt`, retaining the 10 most recent entries.
+
 ## 🛠 Installation
 ```bash
 git clone git@github.com:richardbs/dotfiles.git
