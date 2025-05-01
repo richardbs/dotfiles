@@ -20,6 +20,9 @@ alias gl='git pull'
 # Set EDITOR
 export EDITOR=nano
 
+# Set terminal title to current working directory
+PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
+
 # Load Starship Prompt
 eval "$(starship init bash)"
 

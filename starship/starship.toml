@@ -4,16 +4,12 @@ format = """
 [](red)\
 $os\
 $username\
-[](fg:red bg:peach)\
-$directory\
-[](fg:peach bg:yellow)\
-$hostname\
-[](fg:yellow bg:blue)\
-$conda\
-$custom\
-[](fg:blue bg:lavender)\
+[](fg:red bg:blue)\
 $time\
 $battery\
+[](fg:blue bg:lavender)\
+$conda\
+$custom\
 [ ](fg:lavender)\
 $cmd_duration\
 $line_break\
@@ -48,11 +44,21 @@ Debian = "󰣚"
 Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
 
+# ─── Battery (only if below 30%) ─────────────────
+[battery]
+full_symbol = "🔋"
+charging_symbol = "⚡"
+discharging_symbol = "🔌"
+disabled = false
+threshold = 30
+style = "fg:crust bg:blue"
+format = "[$symbol$percentage]"
+
 [custom.updates]
 command = "checkupdates | wc -l"
 when = "checkupdates"
 symbol = "📦"
-style = "bg:blue fg:crust"
+style = "bg:lavender fg:crust"
 format = '[$symbol$output]($style)'
 
 [username]
@@ -135,15 +141,15 @@ format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
 
 [conda]
 symbol = "  "
-style = "fg:crust bg:sapphire"
+style = "fg:crust bg:lavender"
 format = '[$symbol$environment ]($style)'
 ignore_base = false
 
 [time]
 disabled = false
 time_format = "%R"
-style = "bg:lavender"
-format = '[[$time](fg:crust bg:lavender)]($style)'
+style = "fg:crust bg:blue"
+format = '[[$time](fg:crust bg:blue)]($style)'
 
 [line_break]
 disabled = true
