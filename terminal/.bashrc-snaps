@@ -46,3 +46,6 @@ snapshot_dashboard() {
         printf "Total used: %.2f GiB (%.2f MiB)\n", sum / 1024, sum
     }'
 }
+
+# Load alias for yay-update
+alias yay-update="$HOME/dotfiles/terminal/yay-update.sh"
