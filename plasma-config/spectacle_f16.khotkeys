@@ -1,0 +1,14 @@
+[Data]
+DataCount=1
+Data1=SpectacleF16Shortcut
+
+[Data1]
+Type=SHORTCUT
+Name=SpectacleF16Shortcut
+Comment=Launch spectacle -r -b with F16
+Enabled=true
+ShortcutCount=1
+Shortcut1=F16
+CommandURL=spectacle -r -b
+CommandType=COMMAND
+

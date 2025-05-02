@@ -24,6 +24,7 @@ export EDITOR=nano
 PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 
 # Load Starship Prompt
+export STARSHIP_CONFIG="$HOME/.config/starship.toml"
 eval "$(starship init bash)"
 
 # Git prompt settings
