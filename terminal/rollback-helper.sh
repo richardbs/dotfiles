@@ -1,4 +1,5 @@
-#Used in yay-update.sh and also to call as needed
+# Used in yay-update.sh and also to call as needed
+# Only scans and displays info + guidance
 #!/bin/bash
 
 LOG="$HOME/.local/state/yay-update-log.txt"
