@@ -10,17 +10,6 @@ ln -sf ~/dotfiles/bashrc ~/.bashrc
 
 echo "✅ Symlinks created."
 
-# ─── Add snapshot + terminal source lines to ~/.bashrc if missing ────────
-if ! grep -q '.bashrc-extras' ~/.bashrc; then
-    echo "➕ Sourcing .bashrc-extras in ~/.bashrc..."
-    echo 'source ~/dotfiles/terminal/.bashrc-extras' >> ~/.bashrc
-fi
-
-if ! grep -q '.bashrc-snaps' ~/.bashrc; then
-    echo "➕ Sourcing .bashrc-snaps in ~/.bashrc..."
-    echo 'source ~/dotfiles/terminal/.bashrc-snaps' >> ~/.bashrc
-fi
-
 # ─── Install Snapper config if present ────────────────────────────────────
 if [ -f ./snapshots/snapper-root.conf ]; then
     echo "📸 Copying Snapper config to /etc..."
@@ -62,6 +51,6 @@ bash ~/dotfiles/dotfiles_doctor.sh
 
 # ─── Final message ───────────────────────────────────────────────────────
 echo "✨ Dotfiles installation complete!"
-echo "📅 Sync runs at 00:00 and 12:00 daily via systemd."
+echo "📅 Github sync runs at 00:00 and 12:00 daily via systemd."
 echo "💡 Run 'systemctl --user list-timers' to verify."
 echo "➡️  Reminder: Restart terminal or 'source ~/.bashrc' to apply changes."
