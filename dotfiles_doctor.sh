@@ -34,20 +34,6 @@ check_tool() {
   fi
 }
 
-check_spectacle_shortcut() {
-  echo -n "  Spectacle F16 shortcut → "
-  if command -v spectacle &>/dev/null; then
-    local hotkeys_file="$HOME/.config/khotkeys/spectacle_f16.khotkeys"
-    if grep -q "spectacle -r -b" "$hotkeys_file" 2>/dev/null; then
-      echo "✅"
-    else
-      echo "⚠️  Not found"
-    fi
-  else
-    echo "⏭️  Spectacle not installed — skipping"
-  fi
-}
-
 check_script() {
   local path="$1"
   echo -n "  $path → "
@@ -112,9 +98,6 @@ check_timer "dotfiles-sync.timer"
 echo -e "\n📂 \e[1mOptional CLI tools:\e[0m"
 check_tool "starship"
 check_tool "kitty"
-
-echo -e "\n📂 \e[1mSpectacle shortcut:\e[0m"
-check_spectacle_shortcut
 
 echo -e "\n📂 \e[1mCustom dotfiles scripts:\e[0m"
 check_script "$HOME/dotfiles/install.sh"
