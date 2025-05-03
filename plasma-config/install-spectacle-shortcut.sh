@@ -1,3 +1,7 @@
+# Deliberately not ran during install.sh
+# Run on it's own assuming it's your Keychrone keyboard with
+# the screenshot button tied to F16
+
 #!/bin/bash
 
 # Check for Spectacle
