@@ -1,0 +1,30 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor backups
+*.swp
+*.swo
+*.bak
+*~
+
+# Logs or runtime files
+*.log
+*.tmp
+
+# Shell history (if ever copied in)
+.bash_history
+.zsh_history
+
+# Common secrets
+.env
+.env.*
+secrets.*
+*.key
+*.pem
+*.crt
+
+# System-specific state
+.idea/
+.vscode/
+.cache/
