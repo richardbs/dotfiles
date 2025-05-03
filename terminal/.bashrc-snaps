@@ -1,5 +1,6 @@
 # === SNAPSHOT ALIASES & FUNCTIONS ===
 
+# Run 'snapshot_dashboard' for nice visual layout of snapshots
 snapshot_dashboard() {
     echo -e "\n🧮 Snapshot counts by type:\n"
     sudo snapper -c root list --columns type | tail -n +2 | sort | uniq -c
