@@ -22,8 +22,8 @@ A fully Git-managed dotfiles setup for Bash-based systems, built for clarity, re
 
 ## What's Included
 
-- **Kitty terminal** config with aliases, fonts, and theming
-- **Starship prompt** (Catppuccin Mocha theme)
+- **Kitty terminal config** - with aliases, fonts, and theming
+- **Starship prompt** - (Catppuccin Mocha theme)
 - **Modular Bash config** via `.bashrc`, `.bashrc-extras`, and `.bashrc-snaps`
 -  Quality-of-life CLI tools: + commands:
   - `lsd`, `bat`, `fzf`, `highlight`, `neofetch`

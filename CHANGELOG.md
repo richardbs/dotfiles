@@ -1,4 +1,9 @@
 ## Changes made on 2025-05-03
+- Testing why bullet points aren't indenting properly
+- Updated .gitignore
+- Added important section and lovely note at bottom
+
+## Changes made on 2025-05-03
 - Added important section and lovely note at bottom
 - Added comments
 - Added git pre-push hook to automate changelog
