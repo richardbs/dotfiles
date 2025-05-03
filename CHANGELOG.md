@@ -1,3 +1,19 @@
+## Changes made on 2025-05-03
+- Added git pre-push hook to automate changelog
+- Added .gitignore
+- Added changelog
+- Expanded README.md
+- Removed redundant source lines
+- Removed Spectacle check
+- Added prompt to help my memory. Changed code focus to Bash only
+- added additional comment
+- Improved layout of code structure. Removed duplicate lines
+- WIP: Local changes before sync
+- Update README with update management scripts
+- Add yay-update and rollback-helper scripts, maintained logging of updates, and update bashrc-snaps
+- Correct visual color pallets
+- 📦 Add new terminal + snapshot configs
+
 # Changelog
 
 All notable changes to this dotfiles setup are tracked here.
