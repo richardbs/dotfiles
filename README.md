@@ -9,25 +9,35 @@
 A fully Git-managed dotfiles setup for Bash-based systems, built for clarity, reproducibility, and snapshot resilience.
 
 ---
+## ✨ Important ✨
 
-## 📦 What's Included
-
-- ✨ **Starship prompt** (Catppuccin Mocha theme)
-- 🐱 **Kitty terminal** config with aliases, fonts, and theming
-- 🧠 **Modular Bash config** via `.bashrc`, `.bashrc-extras`, and `.bashrc-snaps`
-- ⚙️ Quality-of-life CLI tools:
-  - `lsd`, `bat`, `fzf`, `highlight`, `neofetch`
-  - Git-aware prompt state
-- 📸 **Snapshot management** using Snapper + grub-btrfs:
-  - Pre-update snapshot support via `yay-update.sh`
-  - Snapshot info + rollback helper
-  - Timeline cleanup with age + count management
-- 🔁 **Dotfile sync** via systemd user timer (`dotfiles-sync.timer`)
-- 🩺 **Doctor script** to verify symlinks, tools, scripts, and broken links
+- There is no support for this personal repo
+- Most of this was done with AI
+- I promise you certain aspects can & will be weird or broken
+  - and with all due respect - ✨ **I don't care** ✨
+- If you aren't Richard, I won't stop you from using it. Free internet
+- But again: *There is no support for this*
 
 ---
 
-## 🛠 Installation
+## What's Included
+
+- **Kitty terminal** config with aliases, fonts, and theming
+- **Starship prompt** (Catppuccin Mocha theme)
+- **Modular Bash config** via `.bashrc`, `.bashrc-extras`, and `.bashrc-snaps`
+-  Quality-of-life CLI tools: + commands:
+  - `lsd`, `bat`, `fzf`, `highlight`, `neofetch`
+  - Git-aware prompt state
+-  **Snapshot management** using Snapper + grub-btrfs:
+  - Pre-update snapshot support via `yay-update.sh`
+  - Snapshot info + rollback helper
+  - Timeline cleanup with age + count management
+-  **Dotfile sync** via systemd user timer (`dotfiles-sync.timer`)
+-  **Doctor script** to verify symlinks, tools, scripts, and broken links
+
+---
+
+## Installation
 
     git clone git@github.com:richardbs/dotfiles.git ~/dotfiles
     cd ~/dotfiles
@@ -44,7 +54,7 @@ This will:
 
 ---
 
-## 🔄 Keeping Dotfiles in Sync
+## Keeping Dotfiles in Sync
 
 After making local changes:
 
@@ -59,7 +69,7 @@ This will:
 
 ---
 
-## 📋 Notes on `.bashrc` & Structure
+## Notes on `.bashrc` & Structure
 
 - `~/.bashrc` is fully Git-managed via symlink
 - It sources:
@@ -70,7 +80,7 @@ This will:
 
 ---
 
-## 🧪 Diagnostic
+## Diagnostic
 
 Run this anytime:
 
@@ -86,7 +96,7 @@ This checks:
 
 ---
 
-## 🗃 File Layout
+## File Layout
 
     dotfiles/
     ├── bashrc                   # Primary Bash config (symlinked to ~/.bashrc)
@@ -102,16 +112,20 @@ This checks:
     │   ├── .bashrc-snaps       # Snapshot CLI helpers
     │   ├── yay-update.sh       # Pre-snapshot yay wrapper
     │   └── rollback-helper.sh  # Lists snapshot info in human-readable way
+    ├── tools/
+    │   └── changelog_append.md
     └── plasma-config/
         └── install-spectacle-shortcut.sh
 
 ---
 
-## ✅ System Assumptions
+## System Assumptions
 
-This dotfiles setup is designed for:
+This personal dotfiles setup is designed for:
 
 - Arch Linux (or derivatives like EndeavourOS)
 - Bash-based systems only
 - Kitty terminal + Starship prompt
 - Snapper configured with `grub-btrfs`
+- Most importantly: *For Richard*
+  - Not Richard? I won't stop you, but there is no support for this. You're on your own

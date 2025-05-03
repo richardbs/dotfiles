@@ -1,4 +1,9 @@
 ## Changes made on 2025-05-03
+- Added important section and lovely note at bottom
+- Added comments
+- Added git pre-push hook to automate changelog
+
+## Changes made on 2025-05-03
 - Added git pre-push hook to automate changelog
 - Added .gitignore
 - Added changelog
