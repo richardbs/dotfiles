@@ -1,3 +1,8 @@
+## Changes made on 2025-05-04
+- Reduced snapshot quantity storage
+- Code cleaning. Improved PS1
+- Updated CHANGELOG.md
+
 ## Changes made on 2025-05-03
 - Testing why bullet points aren't indenting properly
 - Updated .gitignore
