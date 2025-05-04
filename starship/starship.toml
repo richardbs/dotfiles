@@ -4,14 +4,16 @@ format = """
 [](red)\
 $os\
 $username\
-[](fg:red bg:blue)\
-$time\
+[](fg:red bg:yellow)\
+$docker_context\
+$git_branch\
+$git_status\
+[](fg:yellow bg:blue)\
+$directory\
 $battery\
 [](fg:blue bg:lavender)\
-$conda\
-$custom\
+$time\
 [ ](fg:lavender)\
-$cmd_duration\
 $line_break\
 $character
 """
@@ -44,7 +46,6 @@ Debian = "󰣚"
 Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
 
-# ─── Battery (only if below 30%) ─────────────────
 [battery]
 full_symbol = "🔋"
 charging_symbol = "⚡"
@@ -54,6 +55,8 @@ threshold = 30
 style = "fg:crust bg:blue"
 format = "[$symbol$percentage]"
 
+# Checks for package updates based on pacman and AUR
+# Only use "$custom" in format up top
 [custom.updates]
 command = '''bash -c 'repo=$(comm -23 <(checkupdates | cut -d" " -f1 | sort) <(yay -Qm | cut -d" " -f1 | sort) | wc -l); aur=$(yay -Qua | wc -l); echo -n "📦$repo 📡$aur"' '''
 when = "checkupdates"
@@ -69,7 +72,7 @@ style_root = "bg:red fg:crust"
 format = '[ $user]($style)'
 
 [directory]
-style = "bg:peach fg:crust"
+style = "bg:blue fg:crust"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -138,7 +141,7 @@ format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:crust bg:green)]($style)'
 [docker_context]
 symbol = ""
 style = "bg:sapphire"
-format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
+format = '[[ $symbol( $context) ](fg:crust bg:yellow)]($style)'
 
 [conda]
 symbol = "  "
@@ -149,8 +152,8 @@ ignore_base = false
 [time]
 disabled = false
 time_format = "%R"
-style = "fg:crust bg:blue"
-format = '[[$time](fg:crust bg:blue)]($style)'
+style = "fg:crust bg:lavender"
+format = '[[$time](fg:crust bg:lavender)]($style)'
 
 [line_break]
 disabled = true

@@ -1,3 +1,4 @@
+
 # ~/.bashrc
 
 # Run neofetch on interactive shells
@@ -24,9 +25,6 @@ fi
 
 # Set EDITOR
 export EDITOR=nano
-
-# Set terminal title to current working directory
-PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 
 # Load Starship Prompt
 export STARSHIP_CONFIG="$HOME/.config/starship.toml"
