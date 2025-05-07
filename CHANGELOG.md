@@ -1,3 +1,9 @@
+## Changes made on 2025-05-07
+- removed check that is no longer used
+- added xterm so ssh works
+- Removed sync_dottiles.sh. Seemed a waste and an annoyance
+- Reduced snapshot quantity storage
+
 ## Changes made on 2025-05-04
 - Reduced snapshot quantity storage
 - Code cleaning. Improved PS1

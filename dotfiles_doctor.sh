@@ -63,20 +63,6 @@ check_broken_symlinks() {
   fi
 }
 
-check_timer() {
-  local timer_name="$1"
-  echo -n "  $timer_name → "
-  if systemctl --user is-enabled "$timer_name" &>/dev/null; then
-    if systemctl --user is-active "$timer_name" &>/dev/null; then
-      echo "✅"
-    else
-      echo "⚠️  Enabled but not running"
-    fi
-  else
-    echo "❌ Not enabled"
-  fi
-}
-
 # ----------------------
 # Checks Begin
 # ----------------------
@@ -93,7 +79,6 @@ for link in "${!SYMLINKS[@]}"; do
 done
 
 echo -e "\n📂 \e[1mSystemd user timers:\e[0m"
-check_timer "dotfiles-sync.timer"
 
 echo -e "\n📂 \e[1mOptional CLI tools:\e[0m"
 check_tool "starship"
@@ -101,7 +86,6 @@ check_tool "kitty"
 
 echo -e "\n📂 \e[1mCustom dotfiles scripts:\e[0m"
 check_script "$HOME/dotfiles/install.sh"
-check_script "$HOME/dotfiles/sync_dotfiles.sh"
 check_script "$HOME/dotfiles/terminal/yay-update.sh"
 check_script "$HOME/dotfiles/terminal/rollback-helper.sh"
 check_script "$HOME/dotfiles/dotfiles_doctor.sh"
