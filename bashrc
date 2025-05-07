@@ -26,6 +26,9 @@ fi
 # Set EDITOR
 export EDITOR=nano
 
+# Set TERM - Nano on Proxmox VM's won't work without this line
+export TERM=xterm
+
 # Load Starship Prompt
 export STARSHIP_CONFIG="$HOME/.config/starship.toml"
 eval "$(starship init bash)"
