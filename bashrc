@@ -1,12 +1,12 @@
 
 # ~/.bashrc
 
-# Run neofetch on interactive shells
-if [[ $- == *i* ]] && command -v neofetch >/dev/null; then
-  neofetch
-fi
+## Run neofetch on interactive shells
+#if [[ $- == *i* ]] && command -v neofetch >/dev/null; then
+#  neofetch
+#fi
 
-# --- Sources to call ---
+# --- Sources ---
 
 # Global definitions
 if [ -f /etc/bash.bashrc ]; then
@@ -14,13 +14,13 @@ if [ -f /etc/bash.bashrc ]; then
 fi
 
 # Source snapshot-specific
-if [ -f ~/dotfiles/terminal/.bashrc-snaps ]; then
-    source ~/dotfiles/terminal/.bashrc-snaps
+if [ -f ~/dotfiles/terminal/bashrc-snaps ]; then
+    source ~/dotfiles/terminal/bashrc-snaps
 fi
 
 # Source for terminal aliases and utilities
-if [ -f ~/dotfiles/terminal/.bashrc-extras ]; then
-    source ~/dotfiles/terminal/.bashrc-extras
+if [ -f ~/dotfiles/terminal/bashrc-extras ]; then
+    source ~/dotfiles/terminal/bashrc-extras
 fi
 
 # Set EDITOR
@@ -35,5 +35,3 @@ eval "$(starship init bash)"
 
 # Git prompt settings
 export GIT_PS1_SHOWDIRTYSTATE=1
-
-echo "Welcome, $USER 👋"
