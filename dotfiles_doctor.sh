@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo -e "🩺 \e[1mRunning dotfiles diagnostic...\e[0m"
-echo "ℹ️  This script does not install anything. It only checks your system and dotfiles setup to report what's correct, missing, or misconfigured."
+echo -e "\e[1mRunning dotfiles diagnostic...\e[0m"
+echo "This script does not install anything. It only checks your system and dotfiles setup to report what's correct, missing, or misconfigured."
 
 # ----------------------
 # Helper Functions
@@ -72,17 +72,18 @@ declare -A SYMLINKS=(
   ["$HOME/.bashrc"]="$HOME/dotfiles/bashrc"
   ["$HOME/.config/starship.toml"]="$HOME/dotfiles/starship/starship.toml"
   ["$HOME/.config/kitty/kitty.conf"]="$HOME/dotfiles/kitty/kitty.conf"
+  ["$HOME/.nanorc"]="$HOME/dotfiles/nanorc"
 )
 
 for link in "${!SYMLINKS[@]}"; do
   check_symlink "$link" "${SYMLINKS[$link]}"
 done
 
-echo -e "\n📂 \e[1mSystemd user timers:\e[0m"
 
 echo -e "\n📂 \e[1mOptional CLI tools:\e[0m"
 check_tool "starship"
 check_tool "kitty"
+check_tool "nano"
 
 echo -e "\n📂 \e[1mCustom dotfiles scripts:\e[0m"
 check_script "$HOME/dotfiles/install.sh"
