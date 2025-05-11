@@ -28,6 +28,3 @@ secrets.*
 .idea/
 .vscode/
 .cache/
-
-# Git pre-push hook
-.changelog_last_commit
