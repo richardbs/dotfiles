@@ -21,3 +21,4 @@ echo "[yay-update] Running yay -Syu..."
 yay -Syu
 
 bash "$HOME/dotfiles/terminal/rollback-helper.sh"
+echo "yay-update complete. For flatpak updates run: flatpak update"
